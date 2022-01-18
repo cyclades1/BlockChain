@@ -21,8 +21,8 @@ class Main:
 		if not block:
 			print("Invalid block index")
 			return
-		amount = int(input("Enter new amount"))
-		block.amount = amount
+		amount = int(input("Enter new amount: "))
+		block.data['amount'] = amount
 		print("amount altered, chain is invalid now")
 
 	def add(self):
@@ -56,7 +56,12 @@ class Main:
 
 	def runner(self):
 		print("Welcome to BlockChain..")
-		
+		print("A chain of difficulty 4 has been created.. \n")
+		c = input(("Update difficulty? (y/n)"))
+		if c == 'y' or c=='Y':
+			dif = int(input("Enter new difficulty : "))
+			self.Coin.difficulty = dif
+
 
 		while True:
 			print('''
@@ -81,7 +86,7 @@ class Main:
 			if choice == 1:
 				self.add()
 				
-			if choice == 2:
+			elif choice == 2:
 				print("Lenght of the blockchain is.. {}\n".format(self.Coin.get_length()))
 				continue
 

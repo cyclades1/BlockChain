@@ -4,18 +4,21 @@ import json
 
 class BlockChain:
 	def __init__(self):
+		self.difficulty = 4
 		self.chain = [self.createGenesisBlock()]
 
 	def createGenesisBlock(self):
 		timestamp = str(datetime.datetime.now())
-		return Block(0, timestamp, "Th3G3N3S1Sbl0ck", "0")
+		g_block =  Block(0, timestamp, "Th3G3N3S1Sbl0ck")
+		g_block.minblock(self.difficulty)
+		return g_block
 
 	def get_latest_block(self):
 		return self.chain[-1]
 
 	def add_block(self, block):
 		block.prv_hash = self.chain[-1].hash
-		block.hash = block.calculate_hash()
+		block.minblock(self.difficulty)
 		self.chain.append(block)
 
 	def get_length(self):
